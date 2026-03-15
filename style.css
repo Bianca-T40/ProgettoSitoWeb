@@ -1,0 +1,252 @@
+
+body {
+    font-family: Georgia;
+    background-color: beige;
+    color: darkgreen;
+}
+
+h1 {
+    color: darkgreen;
+    
+}
+
+header {
+    background-color: beige;
+    padding: 10px 5px;
+    border-bottom: 2px solid;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+nav a {
+    color: darkgreen;
+    margin-right: 30px;
+}
+
+.hero {
+    background-image: url('SfondoQuadri.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 400px;
+    background-position: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.align {
+    text-align: justify;
+    margin: auto;
+}
+
+.chi-sono {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chi-sono img {
+    width:500px;
+    height: 700px;
+    object-fit: contain;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+.faq-form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 40px;
+    background:#FFE4B5 ;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.faq-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.faq-form p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.faq-form button {
+    width: 100%;
+    padding: 14px;
+    background: #ed3b0f;  
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.faq-form button:hover {
+    background: #c0392b;
+}
+
+.griglia-foto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;  
+    transition: transform 0.2s ease-in-out;
+}
+
+.griglia-foto img {
+    width: 100%;
+    height: 250px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.griglia-foto img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+.contatti {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #FFE4B5;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.contatti h2 {
+    margin-bottom: 10px;
+}
+
+.contatti p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.contatti-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contatto {
+    flex: 1;
+    min-width: 200px;
+}
+
+.contatto h3 {
+    color: darkgreen;
+    margin-bottom: 10px;
+}
+
+.contatto p {
+    margin: 0;
+}
+
+.contatto a {
+    color: #ed3b0f;
+    text-decoration: none;
+}
+
+.contatto a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 767px) {
+    .hero {
+        height: 250px; 
+    }
+
+    h2 {
+        margin-top: 50px; 
+    }
+
+    .chi-sono {
+        flex-direction: column; 
+        text-align: center;
+    }
+
+    .chi-sono img {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 20px;
+    }
+
+    .faq-form {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .contatti {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .contatti-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row; /* Orizzontale su desktop */
+    }
+
+    nav a {
+        margin-right: 30px;
+        margin-bottom: 0; 
+    }
+}
+@media screen and (max-width: 800px) {
+    body { background-color: aquamarine; }
+}
+@media screen and (max-width: 500px) {
+    .mianav a {
+        float: none;
+        width: 100%;
+    }
+body { background-color: #ed3b0f; }
+    
+}
