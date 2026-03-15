@@ -243,10 +243,7 @@ h2 {
     body { background-color: aquamarine; }
 }
 @media screen and (max-width: 500px) {
-    .mianav a {
-        float: none;
-        width: 100%;
-    }
-body { background-color: #ed3b0f; }
+    
+body { background-color: #e8f0e8; }
     
 }
