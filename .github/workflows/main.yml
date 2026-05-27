@@ -1,0 +1,76 @@
+name: DevOps ITIS Pipeline
+
+on:
+  push:
+    branches: [ "main" ] # Sostituisci con "master" se la tua bacheca usa master
+
+permissions:
+  contents: write
+  packages: write
+  pages: write
+  id-token: write
+
+jobs:
+  # ==========================================
+  # JOB A: Quality Check (CI)
+  # ==========================================
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Linting HTML (Verifica sintassi)
+        uses: chiper/htmlhint-action@v1
+        with:
+          path: './'
+
+      - name: Link Checker (Verifica link rotti)
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: ./*.html
+
+  # ==========================================
+  # JOB B: Container Registry (Docker)
+  # ==========================================
+  container-registry:
+    runs-on: ubuntu-latest
+    needs: quality-check # Parte solo se il Job A ha successo
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Login al GitHub Container Registry (GHCR)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build e Push dell'immagine Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/test-sito:latest
+
+  # ==========================================
+  # JOB C: Deployment (CD)
+  # ==========================================
+  deployment:
+    runs-on: ubuntu-latest
+    needs: container-registry # Parte solo se il Job B ha successo
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Configura GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Carica i file statici
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy su GitHub Pages
+        uses: actions/deploy-pages@v4
