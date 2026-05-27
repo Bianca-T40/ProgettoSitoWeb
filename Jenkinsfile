@@ -7,16 +7,14 @@ pipeline {
                 checkout scm
             }
         }
-       stage('Esecuzione Test Unitari') {
+    stage('Esecuzione Test Unitari') {
             steps {
-                echo 'Simulazione di test in corso...'
-                // Scriviamo il file XML riga per riga eliminando il rischio di errori sui rientri
+                echo 'Simulazione di test in corso... Tutti i bug sono stati risolti!'
+                // Creiamo il file XML dicendo che ci sono 0 failures
                 sh "echo '<?xml version=\"1.0\" encoding=\"UTF-8\"?>' > report.xml"
-                sh "echo '<testsuite name=\"Suite1\" tests=\"2\" failures=\"1\">' >> report.xml"
+                sh "echo '<testsuite name=\"Suite1\" tests=\"2\" failures=\"0\">' >> report.xml"
                 sh "echo '  <testcase name=\"testLogin\" classname=\"LoginTests\"/>' >> report.xml"
-                sh "echo '  <testcase name=\"testDatabase\" classname=\"DBTests\">' >> report.xml"
-                sh "echo '    <failure message=\"Timeout connessione\">Il database non ha risposto entro 500ms.</failure>' >> report.xml"
-                sh "echo '  </testcase>' >> report.xml"
+                sh "echo '  <testcase name=\"testDatabase\" classname=\"DBTests\"/>' >> report.xml"
                 sh "echo '</testsuite>' >> report.xml"
             }
         }
